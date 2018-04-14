@@ -313,7 +313,7 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       AvailabilityZones:
-        Fn::GetAZs: ''
+        Fn::GetAZs: Ref AWS::Region
       VPCZoneIdentifier: !Ref PrivateVpcSubnets
       LaunchConfigurationName: !Ref ElkLaunchConfig
       MinSize: '1'
@@ -376,14 +376,13 @@ Resources:
 
           # Install Logstash, Elasticsearch, Kibana, etc...
           apt-get -y update && apt-get -y install elasticsearch kibana logstash elasticsearch-curator nodejs npm
+          sudo sysctl -w vm.max_map_count=262144
 
           # Configure system
           cat >/etc/security/limits.conf << EOF
           elasticsearch - nofile  65536
           elasticsearch - memlock unlimited
           EOF
-		  
-          sudo sysctl -w vm.max_map_count=262144
 
           # Mount Volume
           ${MountVolume}
