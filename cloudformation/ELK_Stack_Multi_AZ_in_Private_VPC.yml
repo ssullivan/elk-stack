@@ -317,7 +317,7 @@ Resources:
       VPCZoneIdentifier: !Ref PrivateVpcSubnets
       LaunchConfigurationName: !Ref ElkLaunchConfig
       MinSize: '1'
-      MaxSize: '12'
+      MaxSize: '2'
       DesiredCapacity: !Ref ElkCapacity
       HealthCheckType: EC2
       HealthCheckGracePeriod: 600
@@ -395,9 +395,9 @@ Resources:
           echo '*/30 * * * * root /usr/local/bin/aws-scripts-mon/mon-put-instance-data.pl --disk-space-util --disk-path=/data --from-cron' >/etc/cron.d/monitor-instance
 
           # Install ES plugins
-          /usr/share/elasticsearch/bin/elasticsearch-plugin install x-pack --batch
-          /usr/share/elasticsearch/bin/elasticsearch-plugin install discovery-ec2 --batch
-          /usr/share/elasticsearch/bin/elasticsearch-plugin install repository-s3 --batch
+          sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install x-pack --batch
+          sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install discovery-ec2 --batch
+          sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install repository-s3 --batch
 
           # Configure Elasticsearch
           echo 'ES_JAVA_OPTS="-Xms${ESHeapSize} -Xmx${ESHeapSize}"' >>/etc/default/elasticsearch

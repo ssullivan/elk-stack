@@ -86,9 +86,6 @@ cluster.name: logger
 
 #################################### Paths ####################################
 
-# Path to directory containing configuration (this file and logging.yml):
-#
-path.conf: /etc/elasticsearch/
 
 # Path to directory where to store index data allocated for this node.
 #
@@ -113,7 +110,7 @@ path.logs: /var/log/elasticsearch/
 
 # If a plugin listed here is not installed for current node, the node will not start.
 #
-plugin.mandatory: discovery-ec2, x-pack
+plugin.mandatory: discovery-ec2
 
 ############################## Network And HTTP ###############################
 
@@ -269,8 +266,7 @@ indices.memory.index_buffer_size: 20%
 discovery.zen.hosts_provider: ec2
 discovery.ec2.tag.Stack: "@@STACK"
 discovery.ec2.tag.App: "kibana"
-
-cloud.aws.region: @@REGION
+discovery.ec2.endpoint: @@REGION
 
 # GCE discovery allows to use Google Compute Engine API in order to perform discovery.
 #
