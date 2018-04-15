@@ -5,6 +5,9 @@ var config = require('./config')
 var auth = require('./lib/auth')
 var sessions = require("client-sessions")
 
+var usersContent = fs.readFileSync('./users.json');
+var users = JSON.parse(usersContent);
+
 var app = express()
 
 console.log('Logcabin starting...')
