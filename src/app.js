@@ -5,8 +5,10 @@ var config = require('./config')
 var auth = require('./lib/auth')
 var sessions = require("client-sessions")
 
-var usersContent = fs.readFileSync('./users.json');
-var users = JSON.parse(usersContent);
+var usersContent = fs.readFileSync('./users.json')
+var users = JSON.parse(usersContent)
+
+config['authorized_users'] = users
 
 var app = express()
 

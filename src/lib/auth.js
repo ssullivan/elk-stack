@@ -63,6 +63,10 @@ exports.setup = function(express, app, config) {
     })
 }
 
+function has(object, key) {
+      return object ? hasOwnProperty.call(object, key) : false;
+}
+
 function nonAuthenticated(config, url) {
     return url.indexOf('/auth/google') === 0 || config.oauth_unauthenticated.indexOf(url) > -1
 }
@@ -71,8 +75,10 @@ function findUser(profile, accessToken, config, callback)  {
     var username = profile.displayName || 'unknown';
     var email = profile.emails[0].value || '';
     var domain = profile._json.domain || '';
+	var authorizedUsers = config['authorized_users'] || {};
+	
 
-    if ( (  email.split('@')[1] === config.allowed_domain ) || domain === config.allowed_domain ) {
+    if ( (  email.split('@')[1] === config.allowed_domain ) || domain === config.allowed_domain  || (email !== '' && has(authorizedUsers, email)) {
         return callback(true, username)
     } else {
         console.log('access refused to: ' + username + ' (email=' + email + ';domain=' + domain + ')');
