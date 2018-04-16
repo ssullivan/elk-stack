@@ -5,8 +5,14 @@ var config = require('./config')
 var auth = require('./lib/auth')
 var sessions = require("client-sessions")
 
-var usersContent = fs.readFileSync('./users.json')
-var users = JSON.parse(usersContent)
+var users = {}
+try {
+	var usersContent = fs.readFileSync('./users.json')
+	users = JSON.parse(usersContent)
+} catch(err) {
+	console.log("Failed to load users.json")
+	users = {}
+}
 
 config['authorized_users'] = users
 
