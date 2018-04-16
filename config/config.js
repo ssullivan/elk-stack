@@ -8,6 +8,8 @@ module.exports =  {
     'oauth_client_id': '@@CLIENT_ID',
     'oauth_client_secret': '@@CLIENT_SECRET',
     'allowed_domain': '@@ALLOWED_DOMAIN',
+    'aws_region': '@@REGION',
+    'aws_bucket': '@@BUCKET',
     'kibana_host': 'localhost',
     'kibana_port': 5601,
     'es_host': 'localhost',

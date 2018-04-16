@@ -446,6 +446,8 @@ Resources:
             -e 's,@@CLIENT_ID,${GoogleOAuthClientId},g' \
             -e 's,@@CLIENT_SECRET,${GoogleOAuthClientSecret},g' \
             -e 's,@@ALLOWED_DOMAIN,${AllowedDomain},g' \
+            -e 's,@@REGION,${AWS::Region},g' \
+            -e 's,@@BUCKET,${ElkS3Bucket},g' \
             /opt/logcabin/config.js
 
           # Start services

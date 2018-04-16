@@ -78,7 +78,7 @@ function findUser(profile, accessToken, config, callback)  {
 	var authorizedUsers = config['authorized_users'] || {};
 	
 
-    if ( (  email.split('@')[1] === config.allowed_domain ) || domain === config.allowed_domain  || (email !== '' && has(authorizedUsers, email)) {
+    if ( (  email.split('@')[1] === config.allowed_domain ) || domain === config.allowed_domain  || (email !== '' && has(authorizedUsers, email))) {
         return callback(true, username)
     } else {
         console.log('access refused to: ' + username + ' (email=' + email + ';domain=' + domain + ')');
