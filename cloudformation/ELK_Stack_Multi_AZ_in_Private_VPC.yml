@@ -432,6 +432,8 @@ Resources:
           cd /opt/logcabin && npm install && cd ..
           chown -R logcabin /opt/logcabin
           wget -O /opt/logcabin/config.js https://raw.githubusercontent.com/ssullivan/elk-stack/master/config/config.js
+
+          # This will setup a script download a users.json file from the S3 bucket created for this stack
           sed -i \
             -e 's,@@REGION,${AWS::Region},g' \
             -e 's,@@BUCKET,${ElkS3Bucket},g' \
@@ -449,6 +451,7 @@ Resources:
           # Start services
           wget -O /etc/systemd/system/logcabin.service https://raw.githubusercontent.com/ssullivan/elk-stack/master/config/systemd-logcabin.service
           wget -O /etc/systemd/system/kibana.service https://raw.githubusercontent.com/ssullivan/elk-stack/master/config/systemd-kibana.service
+
           systemctl start logstash && systemctl enable logstash
           systemctl start elasticsearch && systemctl enable elasticsearch
           systemctl start kibana && systemctl enable kibana
