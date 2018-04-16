@@ -5,10 +5,10 @@ aws_access_key_id=`curl http://169.254.169.254/latest/meta-data/iam/security-cre
 aws_secret_access_key=`curl http://169.254.169.254/latest/meta-data/iam/security-credentials/${instance_profile} | grep SecretAccessKey | cut -d':' -f2 | sed 's/[^0-9A-Za-z/+=]*//g'`
 token=`curl -s http://169.254.169.254/latest/meta-data/iam/security-credentials/${instance_profile} | sed -n '/Token/{p;}' | cut -f4 -d'"'`
 
-file="users.json"
-bucket="__bucket__"
+file="/opt/logcabin/users.json"
+bucket="@@BUCKET"
 date="`date +'%a, %d %b %Y %H:%M:%S %z'`"
-region="__region__"
+region="@@REGION"
 resource="/${bucket}/${file}"
 signature_string="GET\n\n\n${date}\nx-amz-security-token:${token}\n/${resource}"
 signature=`/bin/echo -en "${signature_string}" | openssl sha1 -hmac ${aws_secret_access_key} -binary | base64`

@@ -433,6 +433,11 @@ Resources:
           chown -R logcabin /opt/logcabin
           wget -O /opt/logcabin/config.js https://raw.githubusercontent.com/ssullivan/elk-stack/master/config/config.js
           sed -i \
+            -e 's,@@REGION,${AWS::Region},g' \
+            -e 's,@@BUCKET,${ElkS3Bucket},g' \
+            /opt/logcabin/get-users-list.sh
+
+          sed -i \
             -e 's,@@LOGCABIN_HOST,${ElkHost},g' \
             -e 's,@@API_KEY,${ApiKey},g' \
             -e 's,@@COOKIE_SECRET,${CookieSecret},g' \
