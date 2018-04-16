@@ -3,13 +3,14 @@
     "private": true,
     "main": "app.js",
     "dependencies": {
+        "aws-sdk": "^2.224.1",
+        "client-sessions": "0.6.0",
         "connect-restreamer": "*",
         "express": "3.*",
         "passport": "*",
         "passport-github": "*",
         "passport-google-oauth": "*",
-        "request": "2.34.x",
-        "client-sessions": "0.6.0"
+        "request": "2.34.x"
     },
     "scripts": {
         "start": "node app"
