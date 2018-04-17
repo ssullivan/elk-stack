@@ -81,6 +81,19 @@ Logstash grok patterns can be tested online at https://grokdebug.herokuapp.com/
 
 The Kibana dashboards are configured via the GUI.
 
+Configuration - Configure a user access-list
+-------------
+
+Once the stack is created by cloudformation you can upload a file called users.json to the S3 bucket created by
+the cloud. Logcabin has been modified to retrieve this file when the service starts.
+
+```$json
+{
+   "foo@domain1.com": "",
+   "bar@domain2.com": ""
+}
+```
+
 License
 -------
 
