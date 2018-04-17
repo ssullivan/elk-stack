@@ -424,8 +424,8 @@ Resources:
             -e 's,@@KINESIS_REGION,${AWS::Region},g' \
             /etc/logstash/conf.d/logstash-indexer.conf
           
-          # Install Logcabin
-          wget -O /tmp/elk-stack.tar.gz https://github.com/ssullivan/elk-stack/archive/3be9a2dc131c7703a6dce31ef2bcd11de4444fec.tar.gz
+          # Install Logcabin 947f64811d7cf56da39ec27dbf4b1641458efa32
+          wget -O /tmp/elk-stack.tar.gz https://github.com/ssullivan/elk-stack/archive/947f64811d7cf56da39ec27dbf4b1641458efa32.tar.gz
           tar zxf /tmp/elk-stack.tar.gz -C /tmp
           mv /tmp/elk-stack-3be9a2dc131c7703a6dce31ef2bcd11de4444fec/src /opt/logcabin
           adduser --disabled-password --gecos "" logcabin

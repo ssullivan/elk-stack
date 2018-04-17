@@ -27,19 +27,30 @@ getEC2Rolename(AWS)
 var s3 = new AWS.S3();
 var users = {};
 
+var s3 = new AWS.S3();
+
+console.log('Attempting to fetch ' + config['aws_bucket'] + '/' + 'users.json')
+
 s3.getObject({Bucket: config['aws_bucket'], Key: 'users.json'}, function(err, data) {
     if (err) {
         console.log("Failed to fetch users.json from bucket! " + err)
+        return;
     }
 
     try {
-        users = JSON.parse(data.Body.toString('utf-8'))
+        var jsonStr = data.Body.toString('utf-8')
+        config.authorized_users = JSON.parse(jsonStr)
+        for (var user in config.authorized_users) {
+            console.log("User " + user + " will be granted access")
+        }
+
     } catch (err) {
-        console.log("Failed to load users.json")
+        console.log("Failed to load users.json: " + err)
         users = {}
     }
     return ; // Use the encoding necessary
 })
+
 
 
 
